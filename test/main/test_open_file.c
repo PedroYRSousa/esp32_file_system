@@ -15,8 +15,10 @@ static void test_open_file_OpenFile(void)
 	const char* file_path = "/spiffs/test";
 
 	TEST_ASSERT_EQUAL(esp_vfs_spiffs_register(&fs_conf), ESP_OK);
-	TEST_ASSERT_NOT_NULL(fs_file_open(file_path, mode));
+	FILE* f = fs_file_open(file_path, mode);
+	TEST_ASSERT_NOT_NULL(f);
 	TEST_ASSERT_EQUAL(remove(file_path), 0);
+	fclose(f);
 	TEST_ASSERT_EQUAL(esp_vfs_spiffs_unregister(fs_conf.partition_label), ESP_OK);
 }
 
