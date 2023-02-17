@@ -16,6 +16,8 @@
 	}
 # endif
 
+# include <esp_spiffs.h>
+
 typedef esp_vfs_spiffs_conf_t fs_conf_t;
 
 #endif
