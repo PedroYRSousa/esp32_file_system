@@ -18,7 +18,8 @@ static void test_open_file_OpenFile(void)
 	FILE* f = fs_file_open(file_path, mode);
 	TEST_ASSERT_NOT_NULL(f);
 	TEST_ASSERT_EQUAL(remove(file_path), 0);
-	fclose(f);
+	fs_file_close(&f);
+	TEST_ASSERT_NULL(f);
 	TEST_ASSERT_EQUAL(esp_vfs_spiffs_unregister(fs_conf.partition_label), ESP_OK);
 }
 
