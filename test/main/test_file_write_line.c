@@ -11,7 +11,7 @@ static void test_file_write_line_OpenAndWriteLine(void)
 	TEST_ASSERT_EQUAL(esp_vfs_spiffs_register(&fs_conf), ESP_OK);
 	FILE* f = fs_file_open(file_path, mode);
 	TEST_ASSERT_NOT_NULL(f);
-	TEST_ASSERT_EQUAL(fs_file_write_text(f, text), strlen(text) + 1);
+	TEST_ASSERT_EQUAL(fs_file_write_line(f, text), strlen(text) + 1);
 	TEST_ASSERT_EQUAL(remove(file_path), 0);
 	fs_file_close(&f);
 	TEST_ASSERT_NULL(f);
