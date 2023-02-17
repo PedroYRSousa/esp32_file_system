@@ -9,7 +9,7 @@ static void test_file_open_and_write_MustBeReturnESP_OK(void)
 	const char* text = "Lorem Ipsum";
 
 	TEST_ASSERT_EQUAL(esp_vfs_spiffs_register(&fs_conf), ESP_OK);
-	TEST_ASSERT_EQUAL(fs_file_open_and_write(file_path, text, mode, true), ESP_OK);
+	TEST_ASSERT_EQUAL(_fs_file_open_and_write(file_path, text, mode, true), ESP_OK);
 	TEST_ASSERT_EQUAL(esp_vfs_spiffs_unregister(fs_conf.partition_label), ESP_OK);
 }
 
@@ -21,10 +21,10 @@ static void test_file_open_and_write_MustBeReturnESP_ERR_INVALID_ARG(void)
 	const char* text = "Lorem Ipsum";
 
 	TEST_ASSERT_EQUAL(esp_vfs_spiffs_register(&fs_conf), ESP_OK);
-	TEST_ASSERT_EQUAL(fs_file_open_and_write(NULL, text, mode, true), ESP_ERR_INVALID_ARG);
-	TEST_ASSERT_EQUAL(fs_file_open_and_write(file_path, NULL, mode, true), ESP_ERR_INVALID_ARG);
-	TEST_ASSERT_EQUAL(fs_file_open_and_write(file_path, text, NULL, true), ESP_ERR_INVALID_ARG);
-	TEST_ASSERT_EQUAL(fs_file_open_and_write(NULL, NULL, NULL, true), ESP_ERR_INVALID_ARG);
+	TEST_ASSERT_EQUAL(_fs_file_open_and_write(NULL, text, mode, true), ESP_ERR_INVALID_ARG);
+	TEST_ASSERT_EQUAL(_fs_file_open_and_write(file_path, NULL, mode, true), ESP_ERR_INVALID_ARG);
+	TEST_ASSERT_EQUAL(_fs_file_open_and_write(file_path, text, NULL, true), ESP_ERR_INVALID_ARG);
+	TEST_ASSERT_EQUAL(_fs_file_open_and_write(NULL, NULL, NULL, true), ESP_ERR_INVALID_ARG);
 	TEST_ASSERT_EQUAL(esp_vfs_spiffs_unregister(fs_conf.partition_label), ESP_OK);
 }
 
@@ -36,8 +36,8 @@ static void test_file_open_and_write_MustBeReturnESP_FAIL(void)
 	const char* text = "Lorem Ipsum";
 
 	TEST_ASSERT_EQUAL(esp_vfs_spiffs_register(&fs_conf), ESP_OK);
-	TEST_ASSERT_EQUAL(fs_file_open_and_write(file_path, text, mode, true), ESP_FAIL);
-	TEST_ASSERT_EQUAL(fs_file_open_and_write("test", text, mode, true), ESP_FAIL);
+	TEST_ASSERT_EQUAL(_fs_file_open_and_write(file_path, text, mode, true), ESP_FAIL);
+	TEST_ASSERT_EQUAL(_fs_file_open_and_write("test", text, mode, true), ESP_FAIL);
 	TEST_ASSERT_EQUAL(esp_vfs_spiffs_unregister(fs_conf.partition_label), ESP_OK);
 }
 

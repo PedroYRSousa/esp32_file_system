@@ -5,7 +5,7 @@ static void test_open_file_IsNullIFNotMounted(void)
 	const char* file_path = "/spiffs/test";
 	const char* mode = "w";
 
-	TEST_ASSERT_NULL(fs_file_open(file_path, mode));
+	TEST_ASSERT_NULL(_fs_file_open(file_path, mode));
 }
 
 static void test_open_file_OpenFile(void)
@@ -15,10 +15,10 @@ static void test_open_file_OpenFile(void)
 	const char* file_path = "/spiffs/test";
 
 	TEST_ASSERT_EQUAL(esp_vfs_spiffs_register(&fs_conf), ESP_OK);
-	FILE* f = fs_file_open(file_path, mode);
+	FILE* f = _fs_file_open(file_path, mode);
 	TEST_ASSERT_NOT_NULL(f);
 	TEST_ASSERT_EQUAL(remove(file_path), 0);
-	fs_file_close(&f);
+	_fs_file_close(&f);
 	TEST_ASSERT_NULL(f);
 	TEST_ASSERT_EQUAL(esp_vfs_spiffs_unregister(fs_conf.partition_label), ESP_OK);
 }

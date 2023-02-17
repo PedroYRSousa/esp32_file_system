@@ -1,6 +1,6 @@
 #include "fs.h"
 
-FILE* fs_file_open(const char* file_path, const char* mode)
+FILE* _fs_file_open(const char* file_path, const char* mode)
 {
 	FILE* f = NULL;
 
